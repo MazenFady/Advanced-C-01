@@ -1,37 +1,51 @@
-﻿using System;
-namespace Demo
-{
-    public class Program
+﻿    using System;
+    using static System.Runtime.InteropServices.JavaScript.JSType;
+    namespace Demo
     {
-        #region Helper
-        //public static void Main()
-        //{
-        //    double X = 10 ,Y = 20 ;
-        //    Console.WriteLine($"X :{X} , Y :{Y} ");
-        //    Helper.swap(ref X,ref Y);
-        //    Console.WriteLine("___________________");
-        //    Console.WriteLine($"X :{X} , Y :{Y} ");
-        //}
-       
+        public class Program
+        {
+            public static void Main() 
+            {
+                int[] arr = { 55, 66, 98, 35, 20, 10, 5, 45, 69 };
+                Sort.TheBubbleSort(arr);
+                Console.WriteLine($"the sort array : {string.Join (",",arr)}");
+            Console.ReadKey();
+            }
+            static class Sort
+            {
+               public static void TheBubbleSort<T>(T[] array ) where T : IComparable<T> 
+                {
 
-       
-        //static class Helper 
-        //{
-        //    public static void swap<T>(ref T number1 , ref T number2)
-        //    {
-        //        T temp = number1;
-        //        number1 = number2;
-        //        number2 = temp;
+                    int n = array.Length;
+                    bool swapped;
 
-        //    }
-        //}
-        #endregion
+                    for (int i = 0; i < n; i++)
+                    {
+                        swapped = false;
+                        for (int j = 0; j < n - i -1; j++)
+                        {
+                            if (array[j].CompareTo(array[j + 1])>0) 
+                            {
+                                T temp = array[j];
+                                array[j]= array[j + 1];
+                                array[j+1]= temp;
+                        
+                                swapped = true;
+                            }
+                        }
+                        if (!swapped)
+                            break;
 
+                    }
+
+                }
+
+            }
+
+
+
+        }
 
 
 
     }
-
-
-
-}
